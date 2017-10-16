@@ -10,6 +10,9 @@ apk=$1
 jar=${1%.*}
 jar="$jar.jar"
 
+
+#TO-DO extract all of the resources from the .tar format
+
 #Lets prep the dex2jar scripts to be executable
 find $a2jDir -type f -exec chmod +x {} \;
 
@@ -23,7 +26,7 @@ sh d2j-dex2jar.sh -f ~$apk
 cd ..
 cd ./jd-cli-0.9.1.Final-dist
 
-#Collect the args for jd-cli.jar
+#TO-DO Collect the args for jd-cli.jar
 i=
 shift
 shift
