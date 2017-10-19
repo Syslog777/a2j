@@ -1,5 +1,5 @@
 #!/bin/bash
-#Usage: sh ./a2j path/to/apk/apk path/of/output/directory [options]
+# $1 is the apk, $2 is the output directory, $3 or more are the options
 #Initialize a2j directory variable
 a2jDir="$(pwd )"
 
@@ -10,9 +10,6 @@ apk=$1
 jar=${1%.*}
 jar="$jar.jar"
 
-
-#TO-DO extract all of the resources from the .tar format
-
 #Lets prep the dex2jar scripts to be executable
 find $a2jDir -type f -exec chmod +x {} \;
 
@@ -22,16 +19,17 @@ cd ./dex2jar-2.0
 #Convert the apk to jar
 sh d2j-dex2jar.sh -f ~$apk
 
-#Go to the jd-cli directory
-cd ..
-cd ./jd-cli-0.9.1.Final-dist
+#Collect the arguments, but skip the first two args
+args=($@)
+collective=("")
 
-#TO-DO Collect the args for jd-cli.jar
-i=
+
 shift
 shift
-while i < ${#@}
 
-#Convert the jar to java files (Usage: java -jar jd-cli.jar [options] [Files to decompile])
-java -jar jd-cli.jar #ask Mr. Holland for help on this project
+for i in "$@"; do
+      $collective=($collective${args{$i}})
+done
 
+#Convert the jar to java files
+java -jar jd-cli.jar $collective
