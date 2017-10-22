@@ -20,14 +20,13 @@ cd ./dex2jar-2.0
 sh d2j-dex2jar.sh -f ~$apk
 
 #Collect the arguments, but skip the first two args
-args=($@)
 collective=("")
 
 
 shift
 shift
 
-for i in "$@"; do
+for i in "${$@[@]}"; do
       $collective=($collective${args{$i}})
 done
 
