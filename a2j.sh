@@ -17,18 +17,25 @@ find $a2jDir -type f -exec chmod +x {} \;
 cd ./dex2jar-2.0
 
 #Convert the apk to jar
-sh d2j-dex2jar.sh -f ~$apk
+sh d2j-dex2jar.sh -f $apk
 
 #Collect the arguments, but skip the first two args
 collective=("")
-
-
-shift
-shift
-
-for i in "${$@[@]}"; do
-      $collective=($collective${args{$i}})
+counter=1 
+for i in ${@[@]}
+do
+  : 
+  if "$collective" -gt "2"; then
+    $collective="$collective$i"
+    $counter++
+  else
+    $counter++
+   fi
 done
+
+#Go to jd-cli
+cd ..
+cd ./jd-cmd-master
 
 #Convert the jar to java files
 java -jar jd-cli.jar $collective
