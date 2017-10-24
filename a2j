@@ -1,6 +1,10 @@
 #!/bin/bash
 #Usage sh ./a2j-master path/tp/adroidApp.apk /ouput/directory -options
 # $1 is the apk, $2 is the output directory, $3 or more are the options
+
+#Un tar the archives
+find $a2jDir -type f -exec tar xopf {} \;
+
 #Initialize a2j directory variable
 a2jDir="$(pwd )"
 
