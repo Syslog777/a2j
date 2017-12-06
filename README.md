@@ -6,3 +6,8 @@ A lightweight reverse-engineering tool for converting apks to java files
 
 ### Usage
   `./a2j-master path/tp/adroidApp.apk /ouput/directory -options`
+
+### Other tools similiar to this
+https://github.com/SlimRoms/apktool  
+https://github.com/SlimRoms/apktool  
+https://github.com/brutall/brut.apktool  
